@@ -36,6 +36,9 @@ PScoeff[9][2]=0.92093375*Math.pow(10,5) ;
 PScoeff[9][3]=0.12246777*Math.pow(10,3) ;
 var cs= new Array(10);
 
+
+
+//Equation 2 Pitzer and Sterner
 function eos(T,V) {
 	// takes T(K) and V(cc/mol)	
 	var den=1/V;
@@ -51,6 +54,8 @@ function eos(T,V) {
 	return pressure;		// pressure in Pa
 }
 
+
+//Equation 1 Pitzer and Sterner
 function PSfug(P,T,V) {
 	var den=1/V;
 	var lnf, quotient;
@@ -67,12 +72,17 @@ function sign(y){
  return ((y < 0) ? -1 : 1);
 }
 
+
+
+
+
 function findroot(form){
 var pressure = parseFloat(form.pressure.value)*1000000000; //Pa
 var temperature = parseFloat(form.temperature.value)+273.15; // K
 var b=parseFloat(form.lowvol.value); // cc/mol
 var c=parseFloat(form.highvol.value); // cc/mol
 
+//Equation 4 of Pitzer and Sterner 1994
 for (i = 0; i < 10; i++) cs[i]=PScoeff[i][0]*Math.pow(temperature,-4)+PScoeff[i][1]*Math.pow(temperature,-2)+PScoeff[i][2]*Math.pow(temperature,-1)+PScoeff[i][3]+PScoeff[i][4]*temperature+PScoeff[i][5]*Math.pow(temperature,2);
 	
 if (pressure <= 0)  {
