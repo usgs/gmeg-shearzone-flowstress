@@ -1,15 +1,17 @@
 # This code calculates strain rates, slip rates at a range of different temperatures incorporating changes 
 # in fugacity as a function of temperature.
 
-
+from __future__ import division # Import this to divide floats in python 2
 import numpy as np 
 import math
-from __future__ import division # Import this to divide floats in python 2
+
 from scipy import optimize as opt 
 
 
 # Calculate differential stress
 d = 9.2 # measured grain size in microns
+
+
 
 # Coefficients for calculating differential stress.
 B = 2451 # 2451 (Holyoke 2010) #3631 (Stipp and Tullis, 2003)
@@ -45,15 +47,15 @@ flow_laws = {
 
 #Define some basic functions
 
-def temp_conv(T, dir = "C2K"):  #Convert from C to Kelvin, or Kelvin to C with correct argument
-    if arg == "C2K":
+def temp_conv(T, direction = "C2K"):  #Convert from C to Kelvin or vice versa
+    if direction == "C2K":
         Tk = T+273.15
         return Tk
-    elif arg == "K2C":
+    elif direction == "K2C":
         Tc = T-273.15
         return Tc
     else:
-    	print('ERROR: Not a valid selection')
+        print('ERROR: Not a valid direction of conversion')
 
 def pres_conv(Pmpa): #Convert from MPa to Pa
     Ppa = round(Pmpa*1.0E6)
@@ -80,21 +82,6 @@ def depth_simulator(depth_range, density=2.7, geothermal_gradient=30): #depth ra
         ptc = (round(pressure_calculator(dep, density)), temperature_calculator(geothermal_gradient, dep)) 
         depth_conds.append(ptc)
     return depth_conds
-
-
-
-#Calculating strain rate and slip rate, default is the Hirth et al (2001) flow law.
-
-def calculate_strain_rate(s, flow_law = 'H01'): #s is differential stress, defaults to using Hirth et al flow law
-    e = (flow_laws[flow_law]['A']*np.power(s,flow_laws[flow_law]['n'])*np.power(fugacity,1)*np.exp(-flow_laws[flow_law]['Q']/(8.3144598*temperature)))
-    return e
-
-def calculate_slip_rate(e, w): #w: width in m, output of mm/yr
-    width = w*1000
-    v = width*31536000*e
-    return v
-
-
 
 
 #Create the shear zone class
@@ -202,17 +189,30 @@ def PSfug(P,T,V):
     return math.exp(lnf)/1e6 # fugacity in MPa
 
 
-#Optimizing equation to solve for volume 
-def fun(v):
-    return eos(temperature, v)- pressure
-volume = opt.brentq(fun, 5, 30) #Volume in cc/mol
-
-print(temperature, pressure)
 
 
-# #Calculate fugacity 
-# fugacity = PSfug(pressure, temperature, volume)
-# print(fugacity)
+def fugacity_calculator():
+    def fun(v):
+        return eos(temperature, v)- pressure
+    volume = opt.brentq(fun, 5, 30) #Volume in cc/mol
+
+    #Calculate fugacity 
+    fugacity = PSfug(pressure, temperature, volume)
+    print(fugacity)
+    
+    return fugacity
+
+
+#Calculating strain rate and slip rate, default is the Hirth et al (2001) flow law.
+
+def calculate_strain_rate(s, flow_law = 'H01'): #s is differential stress, defaults to using Hirth et al flow law
+    e = (flow_laws[flow_law]['A']*np.power(s,flow_laws[flow_law]['n'])*np.power(fugacity,1)*np.exp(-flow_laws[flow_law]['Q']/(8.3144598*temperature)))
+    return e
+
+def calculate_slip_rate(e, w): #w: width in m, output of mm/yr
+    width = w*1000
+    v = width*31536000*e
+    return v
 
 
 
