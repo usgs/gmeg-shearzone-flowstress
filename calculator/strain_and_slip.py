@@ -1,6 +1,8 @@
 from fugacity import FugacityCalculator 
 import math 
 
+#Constants from paleopiezometry equations of Stipp and Tullis (2003) with the Holyoke (2010) correction.
+
 CONSTANT_B = 2451
 EXPONENT = -1.26
 
