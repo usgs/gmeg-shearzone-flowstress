@@ -35,8 +35,8 @@ def calculate_strain_rate(differential_stress, fugacity_calculations, flow_law=N
     strain_rate = []
     #for key in FLOW_LAWS.keys():
     #	flow_law = key 
-	for temperature,pressure,fugacity in fugacity_calculations:
+	for temperature,pressure,fugacity in [fugacity_calculations]:
 	    strain_rate = (FLOW_LAWS[flow_law]['A']*np.power(s,FLOW_LAWS[flow_law]['n'])*np.power(fugacity,1)*np.exp(-FLOW_LAWS[flow_law]['Q']/(8.3144598*temperature)))
 	    data = (temperature,pressure,fugacity,strain_rate)
 	  
-    return e
+    return data

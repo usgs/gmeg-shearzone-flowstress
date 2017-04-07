@@ -83,7 +83,7 @@ class FugacityCalculator():
     def __init__(self, temperature_values, pressure_values):
         if len(temperature_values) > 1:
             self.temperature = C2K(np.arange(temperature_values[0],temperature_values[1]+1))
-        else:# len(temperature_values) == 1:
+        else:
             self.temperature = C2K(temperature_values)
         self.pressure = self.convert_mpa_to_pa(pressure_values)
         self.temperature_and_pressure = self.combine_temp_and_pressure_values()
@@ -95,7 +95,7 @@ class FugacityCalculator():
             for i,p in enumerate(pressures):
                 Ppa = p*1.0E6
                 pressures[i] = Ppa
-        else:# len(pressure_values) == 1:
+        else:
             pressures = np.array(pressure_values)*1.0E6
         return pressures 
     
