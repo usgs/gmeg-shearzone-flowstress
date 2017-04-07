@@ -81,30 +81,46 @@ def calculate_coefficient_table(temperature):
 
 class FugacityCalculator():
     def __init__(self, temperature_values, pressure_values):
-        self.temperature = C2K(np.arange(temperature_values[0],temperature_values[1]+1))
+        if len(temperature_values) > 1:
+            self.temperature = C2K(np.arange(temperature_values[0],temperature_values[1]+1))
+        else:# len(temperature_values) == 1:
+            self.temperature = C2K(temperature_values)
         self.pressure = self.convert_mpa_to_pa(pressure_values)
         self.temperature_and_pressure = self.combine_temp_and_pressure_values()
     
     @staticmethod
     def convert_mpa_to_pa(pressure_values):
-        pressures = np.arange(pressure_values[0],pressure_values[1]+1)
-        for i,p in enumerate(pressures):
-            Ppa = round(p*1.0E6)
-            pressures[i] = Ppa
+        if len(pressure_values) > 1:
+            pressures = np.arange(pressure_values[0],pressure_values[1]+1)
+            for i,p in enumerate(pressures):
+                Ppa = p*1.0E6
+                pressures[i] = Ppa
+        else:# len(pressure_values) == 1:
+            pressures = np.array(pressure_values)*1.0E6
         return pressures 
     
     def combine_temp_and_pressure_values(self):
-        all_values = []
-        for i,temp in enumerate(self.temperature):
-            temp_and_pressure = (temp,self.pressure[i])
-            all_values.append(temp_and_pressure)
+        all_values = []         
+        if len(self.temperature)>1:    
+            for i,temp in enumerate(self.temperature):
+                temp_and_pressure = (temp,self.pressure[i])
+                all_values.append(temp_and_pressure)
+        else:
+              all_values = (float(self.temperature), float(self.pressure))
         return all_values
         
     def calculate_fugacity(self): 
         temperature_pressure_fugacity = []
-        for t,p in self.temperature_and_pressure: 
-            calculate_coefficient_table(t)
-            fugacity = fugacity_calculator(t,p)
-            values = {'fugacity':fugacity,'temperature':t, 'pressure':p}
-            temperature_pressure_fugacity.append(values)
+        if len(self.temperature)>1:
+            for t,p in self.temperature_and_pressure: 
+                calculate_coefficient_table(t)
+                fugacity = fugacity_calculator(t,p)
+                values = (t,p,fugacity)
+                temperature_pressure_fugacity.append(values)
+        else:
+            calculate_coefficient_table(self.temperature_and_pressure[0])
+            fugacity = fugacity_calculator(self.temperature_and_pressure[0], self.temperature_and_pressure[1])
+            temperature_pressure_fugacity = (self.temperature_and_pressure[0], self.temperature_and_pressure[1], fugacity)
+        
+            
         return temperature_pressure_fugacity
