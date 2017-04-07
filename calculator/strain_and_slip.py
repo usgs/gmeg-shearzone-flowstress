@@ -1,5 +1,8 @@
 from fugacity import FugacityCalculator 
-import math 
+import math
+import numpy as np
+
+
 
 #Constants from paleopiezometry equations of Stipp and Tullis (2003) with the Holyoke (2010) correction.
 
@@ -22,21 +25,23 @@ FLOW_LAWS = {
 
 def calculate_differential_stress(grain_size): 
 	part = (math.log(grain_size)-math.log(CONSTANT_B))/EXPONENT
-	s = math.exp(part)
-	return s
+	differential_stress = math.exp(part)
+	return differential_stress
 
 def calculate_strain_rate(differential_stress, fugacity_calculations, flow_law=None): 
-	#s is differential stress, defaults to using Hirth et al flow law
 
-    # if not flow_law:
-    # 	flow_law = 'H01'
-
-    #strain_rates = [{key:[]} for key in FLOW_LAWS.keys()]
+    #temperature_pressure_fugacity_strainrate = []
     strain_rate = []
-    #for key in FLOW_LAWS.keys():
-    #	flow_law = key 
-	for temperature,pressure,fugacity in [fugacity_calculations]:
-	    strain_rate = (FLOW_LAWS[flow_law]['A']*np.power(s,FLOW_LAWS[flow_law]['n'])*np.power(fugacity,1)*np.exp(-FLOW_LAWS[flow_law]['Q']/(8.3144598*temperature)))
-	    data = (temperature,pressure,fugacity,strain_rate)
-	  
-    return data
+
+    for temperature,pressure,fugacity in fugacity_calculations:
+        sr = (FLOW_LAWS[flow_law]['A']*np.power(differential_stress,FLOW_LAWS[flow_law]['n'])*np.power(fugacity,1)*np.exp(-FLOW_LAWS[flow_law]['Q']/(8.3144598*temperature)))
+        strain_rate.append(sr)
+        #values = (temperature, pressure, fugacity, sr)
+    	#temperature_pressure_fugacity_strainrate.append(values)
+  
+        return strain_rate #temperature_pressure_fugacity_strainrate
+
+def calculate_slip_rate(strain_rate, width): #width in m, output of mm/yr
+    w = width*1000
+    velocity = w*31536000*float(strain_rate[0])
+    return velocity

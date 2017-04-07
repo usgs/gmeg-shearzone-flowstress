@@ -120,7 +120,7 @@ class FugacityCalculator():
         else:
             calculate_coefficient_table(self.temperature_and_pressure[0])
             fugacity = fugacity_calculator(self.temperature_and_pressure[0], self.temperature_and_pressure[1])
-            temperature_pressure_fugacity = (self.temperature_and_pressure[0], self.temperature_and_pressure[1], fugacity)
+            temperature_pressure_fugacity = [(self.temperature_and_pressure[0], self.temperature_and_pressure[1], fugacity)]
         
             
         return temperature_pressure_fugacity
