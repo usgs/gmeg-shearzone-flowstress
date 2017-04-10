@@ -23,7 +23,8 @@ FLOW_LAWS = {
     "RB04": {"A": 1.2E-5, "n": 2.97, "Q": 2.42E5}
     }
 
-def calculate_differential_stress(grain_size): 
+def calculate_differential_stress(grain_size):
+
 	part = (math.log(grain_size)-math.log(CONSTANT_B))/EXPONENT
 	differential_stress = math.exp(part)
 	return differential_stress
@@ -39,9 +40,12 @@ def calculate_strain_rate(differential_stress, fugacity_calculations, flow_law=N
         #values = (temperature, pressure, fugacity, sr)
     	#temperature_pressure_fugacity_strainrate.append(values)
   
-        return strain_rate #temperature_pressure_fugacity_strainrate
+    return strain_rate #temperature_pressure_fugacity_strainrate
 
 def calculate_slip_rate(strain_rate, width): #width in m, output of mm/yr
-    w = width*1000
-    velocity = w*31536000*float(strain_rate[0])
-    return velocity
+    w = width*1000 #convert meters into milimeters
+    velocities = []
+    for strain in strain_rate:
+        vel = w*31536000*strain
+        velocities.append(vel)
+    return velocities

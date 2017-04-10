@@ -3,8 +3,8 @@ from strain_and_slip import calculate_differential_stress, calculate_strain_rate
 
 import pdb
 
-temp = [400]
-pressure = [400]
+temp = [400, 402]
+pressure = [400, 402]
 grain_size = 9.2
 width = 30
 
