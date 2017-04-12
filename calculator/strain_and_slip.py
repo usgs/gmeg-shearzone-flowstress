@@ -24,9 +24,11 @@ FLOW_LAWS = {
     }
 
 def calculate_differential_stress(grain_size):
-
-	part = (math.log(grain_size)-math.log(CONSTANT_B))/EXPONENT
-	differential_stress = math.exp(part)
+	differential_stress = []
+	for grain in grain_size:
+		part = (math.log(grain)-math.log(CONSTANT_B))/EXPONENT
+		part2 = math.exp(part)
+		differential_stress.append(part2)
 	return differential_stress
 
 def calculate_strain_rate(differential_stress, fugacity_calculations, flow_law=None): 
@@ -43,9 +45,25 @@ def calculate_strain_rate(differential_stress, fugacity_calculations, flow_law=N
     return strain_rate #temperature_pressure_fugacity_strainrate
 
 def calculate_slip_rate(strain_rate, width): #width in m, output of mm/yr
-    w = width*1000 #convert meters into milimeters
+    
     velocities = []
     for strain in strain_rate:
-        vel = w*31536000*strain
+        vel = width*1000*31536000*strain
         velocities.append(vel)
     return velocities
+
+    for w in width:
+    	vel = w*1000*31536000*strain
+    	velocities.append(vel)
+    return velocities
+
+# def calculate_slip_rate_constant_strain_rate(strain_rate, width):
+# 	w = width*1000 #convert meters to milimeters
+# 	velocities = []
+# 	for w in width:
+# 		vel = w*31536000*strain_rate
+# 		velocities.append(vel)
+# 	return velocities
+
+
+
