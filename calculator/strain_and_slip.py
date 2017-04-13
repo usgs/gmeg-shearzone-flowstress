@@ -33,37 +33,27 @@ def calculate_differential_stress(grain_size):
 
 def calculate_strain_rate(differential_stress, fugacity_calculations, flow_law=None): 
 
-    #temperature_pressure_fugacity_strainrate = []
     strain_rate = []
 
-    for temperature,pressure,fugacity in fugacity_calculations:
-        sr = (FLOW_LAWS[flow_law]['A']*np.power(differential_stress,FLOW_LAWS[flow_law]['n'])*np.power(fugacity,1)*np.exp(-FLOW_LAWS[flow_law]['Q']/(8.3144598*temperature)))
-        strain_rate.append(sr)
-        #values = (temperature, pressure, fugacity, sr)
-    	#temperature_pressure_fugacity_strainrate.append(values)
-  
-    return strain_rate #temperature_pressure_fugacity_strainrate
+    for temperature, pressure, fugacity in fugacity_calculations:
+        for stress in differential_stress:
+            sr = (FLOW_LAWS[flow_law]['A']*np.power(stress, FLOW_LAWS[flow_law]['n'])*np.power(fugacity,1)*np.exp(-FLOW_LAWS[flow_law]['Q']/(8.3144598*temperature)))
+            srn = np.float64(sr).item()
+            strain_rate.append(srn)
+    return strain_rate
 
 def calculate_slip_rate(strain_rate, width): #width in m, output of mm/yr
     
     velocities = []
-    for strain in strain_rate:
-        vel = width*1000*31536000*strain
-        velocities.append(vel)
+    
+    for w in width:   
+        for strain in strain_rate:
+            vel = w*1000*31536000*strain
+            velocities.append(vel)
     return velocities
 
-    for w in width:
-    	vel = w*1000*31536000*strain
-    	velocities.append(vel)
-    return velocities
 
-# def calculate_slip_rate_constant_strain_rate(strain_rate, width):
-# 	w = width*1000 #convert meters to milimeters
-# 	velocities = []
-# 	for w in width:
-# 		vel = w*31536000*strain_rate
-# 		velocities.append(vel)
-# 	return velocities
+
 
 
 
