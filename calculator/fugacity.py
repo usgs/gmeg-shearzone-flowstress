@@ -79,6 +79,8 @@ def calculate_coefficient_table(temperature):
         +PScoeff[i][2]*math.pow(temperature,-1)\
         +PScoeff[i][3]+PScoeff[i][4]*temperature+PScoeff[i][5]*math.pow(temperature,2)
 
+
+
 class FugacityCalculator():
     def __init__(self, temperature_values, pressure_values):
         if len(temperature_values) > 1:
