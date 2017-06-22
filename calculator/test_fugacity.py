@@ -27,16 +27,22 @@ class Test_flow_stress_calculator(unittest.TestCase):
 
 	def test_if_fugacity_calculator_works(self):
 		self.fs_calculation.calculate_fugacity()
+
 		self.assertEqual(self.fs_calculation.fugacity,[116.71651725233453, 149.72095732050246])
 
-	def test_if_differential_stress_is_calculated(self):
+	#def test_if_differential_stress_is_calculated(self):
 		self.ds = self.fs_calculation.calculate_differential_stress() 
-		self.assertEqual(self.ds, [78.75972939002484])
 		
-	def test_if_strain_rate_is_calculated(self):
+
+	
+		self.assertEqual(self.ds, [78.75972939002484])
+
+
+		
+	#def test_if_strain_rate_is_calculated(self):
 
 		self.sr = self.fs_calculation.calculate_strain_rate(flow_law='H01')
-	
+		pdb.set_trace()
 		self.assertEqual(self.sr, [5.0181530333149198e-12])
 
 	def test_if_slip_rate_is_calculated(self):
