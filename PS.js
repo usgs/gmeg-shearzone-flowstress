@@ -54,7 +54,7 @@ function eos(T,V) {
 	return pressure;		// pressure in Pa
 }
 
-
+ 
 //Equation 1 Pitzer and Sterner
 function PSfug(P,T,V) {
 	var den=1/V;
