@@ -3,6 +3,8 @@ from scipy.constants.constants import C2K
 import math
 from scipy import optimize as opt # for optimization
 
+import pdb
+
 
 #Create coefficient tables to solve for equations of state
 
@@ -158,12 +160,13 @@ class FlowStressCalculator():
         sr = []
         for num, stress in enumerate(self.differential_stress):
             for t, f in zip(self.temperature, self.fugacity):
-                sr = (FLOW_LAWS[flow_law]['A']*np.power(stress, FLOW_LAWS[flow_law]['n'])*np.power(f,1)*np.exp(-FLOW_LAWS[flow_law]['Q']/(8.3144598*t)))
-                sr.append(sr)
+                sr_i = (FLOW_LAWS[flow_law]['A']*np.power(stress, FLOW_LAWS[flow_law]['n'])*np.power(f,1)*np.exp(-FLOW_LAWS[flow_law]['Q']/(8.3144598*t)))
+                self.strain_rate.append(sr_i)
         
-        strain_rate = [sr[x:x+len(self.temperature)] for x in xrange(0, len(sr), len(self.temperature))]
-        
-        return strain_rate
+        #st_rate = [sr[x:x+len(self.temperature)] for x in xrange(0, len(sr), len(self.temperature))]
+        #self.strain_rate = st_rate
+
+        return self.strain_rate
     
     
     def group_strain_rate(self):
@@ -182,13 +185,13 @@ class FlowStressCalculator():
 
 
 
-import matplotlib.pyplot as plt
-from matplotlib import cm
-from matplotlib.backends.backend_pdf import PdfPages
+#import matplotlib.pyplot as plt
+#from matplotlib import cm
+#from matplotlib.backends.backend_pdf import PdfPages
 
 
 
-class PlotFlowStress():
+#class PlotFlowStress():
 
 
 
