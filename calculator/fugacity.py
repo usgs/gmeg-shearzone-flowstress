@@ -122,7 +122,6 @@ def fugacity_optimizer(temperature,pressure):
 
 
 
-
     ##CALCULATE FLOW STRESS
 #Takes imputs of pressure and temperature converts them from MPa and C to Pa and K 
 
@@ -157,21 +156,20 @@ class FlowStressCalculator():
 
     def calculate_strain_rate(self, flow_law='H01'): 
         
-        sr = []
-        for num, stress in enumerate(self.differential_stress):
+        for stress in self.differential_stress:
             for t, f in zip(self.temperature, self.fugacity):
                 sr_i = (FLOW_LAWS[flow_law]['A']*np.power(stress, FLOW_LAWS[flow_law]['n'])*np.power(f,1)*np.exp(-FLOW_LAWS[flow_law]['Q']/(8.3144598*t)))
                 self.strain_rate.append(sr_i)
+
+        [self.strain_rate[x:x+len(self.temperature)] for x in xrange(0, len(self.strain_rate), len(self.temperature))]
         
-        #st_rate = [sr[x:x+len(self.temperature)] for x in xrange(0, len(sr), len(self.temperature))]
-        #self.strain_rate = st_rate
 
         return self.strain_rate
     
     
-    def group_strain_rate(self):
-        strain_rate_chunks = [self.strain_rate[x:x+len(self.temperature)] for x in xrange(0, len(self.strain_rate), len(self.temperature))]
-        return strain_rate_chunks
+    # def group_strain_rate(self):
+    #     strain_rate_chunks = [self.strain_rate[x:x+len(self.temperature)] for x in xrange(0, len(self.strain_rate), len(self.temperature))]
+    #     return strain_rate_chunks
 
 
     def calculate_slip_rate(self, width): #width in m, output of mm/yr

@@ -38,6 +38,9 @@ class Test_flow_stress_calculator(unittest.TestCase):
 		self.assertEqual(self.fs_calculation.differential_stress, [204.77990936946233, 29.14098182806724])
 		self.assertEqual(self.sr[0], [2.2933821401993624e-10])
 		self.assertEqual(self.slip, [4.7475742217585797, 26.015582335413924])
+		#pdb.set_trace()
+		self.assertEqual(self.strain_rate, 0)
+
 		# pdb.set_trace()
 
 		
