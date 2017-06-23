@@ -1,7 +1,9 @@
 import numpy as np 
-from scipy.constants.constants import C2K
+from scipy.constants.constants import C2K, K2C
 import math
 from scipy import optimize as opt # for optimization
+import matplotlib.pyplot as plt
+from matplotlib import cm
 
 import pdb
 
@@ -148,7 +150,8 @@ class FlowStressCalculator():
 
     def calculate_differential_stress(self, grain_size, paleopiezometer='HK10'):
         
-        for grain in grain_size:
+        self.grain_size = grain_size
+        for grain in self.grain_size:
             part = math.exp((math.log(grain)-math.log(PIEZOMETERS[paleopiezometer]['Constant_B']))/PIEZOMETERS[paleopiezometer]['Exponent'])
             self.differential_stress.append(part)
         return self.differential_stress
@@ -161,16 +164,8 @@ class FlowStressCalculator():
                 sr_i = (FLOW_LAWS[flow_law]['A']*np.power(stress, FLOW_LAWS[flow_law]['n'])*np.power(f,1)*np.exp(-FLOW_LAWS[flow_law]['Q']/(8.3144598*t)))
                 self.strain_rate.append(sr_i)
 
-        [self.strain_rate[x:x+len(self.temperature)] for x in xrange(0, len(self.strain_rate), len(self.temperature))]
-        
-
         return self.strain_rate
     
-    
-    # def group_strain_rate(self):
-    #     strain_rate_chunks = [self.strain_rate[x:x+len(self.temperature)] for x in xrange(0, len(self.strain_rate), len(self.temperature))]
-    #     return strain_rate_chunks
-
 
     def calculate_slip_rate(self, width): #width in m, output of mm/yr
         
@@ -183,13 +178,52 @@ class FlowStressCalculator():
 
 
 
-#import matplotlib.pyplot as plt
-#from matplotlib import cm
+
+def plot_strain_slip_rates(temperature, strain_rate, slip_rate):
+    
+    temperature_C = K2C(temperature)
+    #Group the data for plotting
+    sr_grouped = [strain_rate[x:x+len(temperature)] for x in xrange(0, len(strain_rate), len(temperature))]
+    sl_grouped = [slip_rate[x:x+len(temperature)] for x in xrange(0, len(slip_rate), len(temperature))]
+    
+    
+    fig = plt.figure()
+    sub1 = fig.add_subplot(2,1,1)
+    sub1.set_yscale('log')
+    sub1.text(0.01, 0.85, '[A] Strain Rates', transform=sub1.transAxes, fontsize=10)
+    sub1.set_ylabel('Strain Rate (1/s)')
+    sub1.legend(loc='upper left')
+
+    
+    sub2 = fig.add_subplot(2,1,2, sharex=sub1)
+    sub2.set_yscale('log')
+    sub2.text(0.01, 0.85, '[B] Slip Rates', transform=sub2.transAxes, fontsize=10)
+    sub2.set_xlabel('Temperature ( C)')
+    sub2.set_ylabel("Velocity (mm/yr)")
+    
+
+    plt.setp(sub1.get_xticklabels(), visible=False)
+    plt.subplots_adjust(hspace = 0.2)
+
+    colors=iter(cm.jet(np.linspace(0,1,len(grain_size))))
+    colors2=iter(cm.jet(np.linspace(0,1,len(grain_size))))
+    for i, grain in enumerate(grain_size):
+        sub1.plot(temperature_C, sr_grouped[i], color=next(colors), label=(str(grain) + ' um'))
+        sub1.legend(loc='center left', bbox_to_anchor=(1, 0), fontsize = 'x-small')
+        sub2.plot(temperature_C, sl_grouped[i], color=next(colors2))
+
+    
+    
+    
+    plt.show()
+
+#
 #from matplotlib.backends.backend_pdf import PdfPages
 
 
 
 #class PlotFlowStress():
+
 
 
 
