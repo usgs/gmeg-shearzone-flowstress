@@ -9,4 +9,4 @@ PS.js courtesy of Tony Withers (http://publish.uwo.ca/~awither5/fugacity/index.h
 
 Code also includes basic plotting functions, some examples here: 
 
-![Strain_and_Slip](https://raw.github.com/BenjiDa/Flowstress/master/figs/Strain_Slip_Rates.pdf "A) Plot of strain rates over a range of temperatures, B) Slip rates for a corresponding shear zone 30 m wide")
+<img width="1104" alt="ssr" src="https://user-images.githubusercontent.com/18178879/27503496-6b11ee40-5831-11e7-90f9-4a561189c6a5.png">
