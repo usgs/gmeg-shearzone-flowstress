@@ -123,7 +123,7 @@ def fugacity_optimizer(temperature,pressure):
 
 
 
-    ##CALCULATE FUGACITY
+    ##CALCULATE FLOW STRESS
 #Takes imputs of pressure and temperature converts them from MPa and C to Pa and K 
 
 class FlowStressCalculator():
