@@ -10,3 +10,9 @@ PS.js courtesy of Tony Withers (http://publish.uwo.ca/~awither5/fugacity/index.h
 Code also includes basic plotting functions, some examples here: 
 
 <img width="1104" alt="ssr" src="https://user-images.githubusercontent.com/18178879/27503496-6b11ee40-5831-11e7-90f9-4a561189c6a5.png">
+Plot of strain rate and slip rate over a range of temperatures, calculations account for variation in fugacity with varying temperature and a pressure of 400 MPa. Slip rates correspond to a shear zone 30 meters wide.
+
+
+
+
+
