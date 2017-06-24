@@ -179,7 +179,7 @@ class FlowStressCalculator():
 
 
 
-def plot_strain_slip_rates(temperature, strain_rate, slip_rate):
+def plot_strain_slip_rates(temperature, strain_rate, slip_rate, grain_size):
     
     temperature_C = K2C(temperature)
     #Group the data for plotting
@@ -209,7 +209,7 @@ def plot_strain_slip_rates(temperature, strain_rate, slip_rate):
     colors2=iter(cm.jet(np.linspace(0,1,len(grain_size))))
     for i, grain in enumerate(grain_size):
         sub1.plot(temperature_C, sr_grouped[i], color=next(colors), label=(str(grain) + ' um'))
-        sub1.legend(loc='center left', bbox_to_anchor=(1, 0), fontsize = 'x-small')
+        sub1.legend(loc='center left', bbox_to_anchor=(1, 0), title="Grain Size", fontsize = 'x-small')
         sub2.plot(temperature_C, sl_grouped[i], color=next(colors2))
 
     

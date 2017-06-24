@@ -9,4 +9,4 @@ PS.js courtesy of Tony Withers (http://publish.uwo.ca/~awither5/fugacity/index.h
 
 Code also includes basic plotting functions, some examples here: 
 
-![Strain and slip rate](figs/Strain_Slip_Rates.pdf "Description goes here")
+![Alt text](figs/Strain_Slip_Rates.pdf?raw=true "Optional Title")
