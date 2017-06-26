@@ -217,12 +217,17 @@ def plot_strain_slip_rates(temperature, strain_rate, slip_rate, grain_size):
     
     plt.show()
 
-#
-#from matplotlib.backends.backend_pdf import PdfPages
 
+def chunker(temperature, data):
+    chunk = [data[x:x+len(temperature)] for x in xrange(0, len(data), len(temperature))]
+    
+    return chunk
 
-
-#class PlotFlowStress():
+#Export PDF file
+def export_pdf(fig, title='title'):
+    pdf = PdfPages(title+'.pdf')
+    pdf.savefig(fig)#, bbox_inches='tight')
+    pdf.close()
 
 
 
