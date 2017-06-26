@@ -9,13 +9,11 @@ PS.js courtesy of Tony Withers (http://publish.uwo.ca/~awither5/fugacity/index.h
 
 Code also includes basic plotting functions, some examples here: 
 
-<<<<<<< HEAD
-![Alt text](figs/Strain_Slip_Rates.pdf?raw=true "Optional Title")
-=======
-[Strain and Slip Rates](figs/Strain_Slip_Rates.pdf "Plot of strain rate and slip rate over a range of temperatures, calculations account for variation in fugacity with varying temperature and a pressure of 400 MPa. Slip rates correspond to a shear zone 30 meters wide.")
 
 
-[Paleopiezometers](figs/Paleopiezometers.pdf "Plot showing the four paleopiezometers included with the code.")
+
+
+![screen shot 2017-06-26 at 9 20 35 am](https://user-images.githubusercontent.com/18178879/27549580-3e47df88-5a51-11e7-89a7-a1103a3b4af3.png)
 
 
 ### Examples
