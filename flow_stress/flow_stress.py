@@ -140,11 +140,10 @@ class FlowStressCalculator():
         
     def calculate_fugacity(self):
         
-        for t in self.temperature:
-            for p in self.pressure:
-                calculate_coefficient_table(t)
-                fug = fugacity_optimizer(t,p)
-                self.fugacity.append(fug)
+        for t, p in zip(self.temperature, self.pressure):
+            calculate_coefficient_table(t)
+            fug = fugacity_optimizer(t,p)
+            self.fugacity.append(fug)
         return self.fugacity
 
 
