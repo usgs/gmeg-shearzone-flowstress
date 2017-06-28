@@ -142,7 +142,7 @@ class FlowStressCalculator():
         
         #for t, p in zip(self.temperature, self.pressure):
         for t in self.temperature:
-            for p in self.pressure
+            for p in self.pressure:
                 calculate_coefficient_table(t)
                 fug = fugacity_optimizer(t,p)
                 self.fugacity.append(fug)
@@ -169,7 +169,7 @@ class FlowStressCalculator():
     
 
     def calculate_slip_rate(self, width): #width in m, output of mm/yr
-        
+       
         for w in width: 
             for strain in self.strain_rate:
                 vel = w*1000*31536000*strain
@@ -217,6 +217,8 @@ def plot_strain_slip_rates(temperature, strain_rate, slip_rate, grain_size):
     
     
     plt.show()
+
+
 
 
 def chunker(temperature, data):

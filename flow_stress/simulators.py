@@ -85,6 +85,19 @@ def simulator(width, strain_rate):
     return w, e, v
 
 
+ def fugacity_sim(temperature, pressure):
+
+ 	#f = FlowStressCalculator(temperature, pressure)
+ 	#fug = f.calculate_fugacity()
+
+ 	tt, pp = np.meshgrid(np.linspace(0, 700, 50), np.linspace(0, 700, 50))
+ 	fz = FlowStressCalculator(tt, pp)
+ 	fugz = f.calculate_fugacity()
+ 	
+ 	return 
+
+
+
 
     
     
