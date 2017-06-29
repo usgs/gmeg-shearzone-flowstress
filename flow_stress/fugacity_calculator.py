@@ -86,3 +86,56 @@ class FugacityCalculator():
         fugacity = self.PSfug(self.pressure, self.temperature, volume)
         
         return fugacity
+
+
+
+
+
+###same thing but not in class ...
+
+def eos(T, V):
+    den = 1/V
+    R = 8314472
+    var_num = CS[2]+2*CS[3]*den+3*CS[4]*math.pow(den,2)+4*CS[5]*math.pow(den,3)
+    var_denom = math.pow((CS[1]+CS[2]*den+CS[3]*math.pow(den,2)+CS[4]*math.pow(den,3)+CS[5]*math.pow(den,4)),2)
+    pressure=den+CS[0]*math.pow(den,2)-math.pow(den,2)*(var_num/var_denom)
+    pressure= pressure + (CS[6]*math.pow(den,2)*math.exp(-CS[7]*den)+CS[8]*math.pow(den,2)*math.exp(-CS[9]*den))
+    pressure = pressure*(R*T) #pressure in Pa
+    return pressure
+
+#Solve for fugacity, Eq 1 of Pitzer and Sterner (1994)
+#Returns fugacity in MPa
+def PSfug(P,T,V):
+    den=1/V;
+    R=8314472;
+    quotient = CS[0]*den+(1/(CS[1]+CS[2]*den+CS[3]*math.pow(den,2)+CS[4]*math.pow(den,3)+CS[5]*math.pow(den,4))-1/CS[1])
+    quotient-= CS[6]/CS[7]*(math.exp(-CS[7]*den)-1)
+    quotient-= CS[8]/CS[9]*(math.exp(-CS[9]*den)-1)
+    lnf=(math.log(den)+ quotient+P/(den*R*T))+math.log(R*T)-1
+    return math.exp(lnf)/1e6 # fugacity in MPa
+
+#Optimizing equation to solve for volume
+def fugacity_optimizer(temperature,pressure):
+
+	CS = np.zeros([10]) 
+	
+	def calculate_coefficient_table(temperature):
+    
+	    for i in range(0, len(PS_COEFF)):
+	        CS[i]=PS_COEFF[i][0]*math.pow(temperature,-4)+PS_COEFF[i][1]*math.pow(temperature,-2)\
+	        +PS_COEFF[i][2]*math.pow(temperature,-1)\
+	        +PS_COEFF[i][3]+PS_COEFF[i][4]*temperature+PS_COEFF[i][5]*math.pow(temperature,2)
+	    #return CS
+
+	def fun(v):
+		return eos(temperature, v)- pressure
+
+	volume = opt.brentq(fun, 5, 30) #Volume in cc/mo
+
+    #Calculate fugacity 
+	fugacity = PSfug(pressure, temperature, volume)
+    
+	return fugacity
+
+
+

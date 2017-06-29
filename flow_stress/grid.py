@@ -1,4 +1,5 @@
-
+import numpy as np
+from scipy import optimize as opt # for optimization
 
 
 # Working on grids for fugacity calculations. 
