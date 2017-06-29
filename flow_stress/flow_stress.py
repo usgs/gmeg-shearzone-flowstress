@@ -72,11 +72,12 @@ FLOW_LAWS = {
 
 
 def calculate_coefficient_table(temperature):
+    
     for i in range(0, len(PS_COEFF)):
         CS[i]=PS_COEFF[i][0]*math.pow(temperature,-4)+PS_COEFF[i][1]*math.pow(temperature,-2)\
         +PS_COEFF[i][2]*math.pow(temperature,-1)\
         +PS_COEFF[i][3]+PS_COEFF[i][4]*temperature+PS_COEFF[i][5]*math.pow(temperature,2)
-
+    return CS
 
 
 #CALCULATE EQUATIONS OF STATE AND FUGACITY
