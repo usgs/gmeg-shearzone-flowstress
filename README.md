@@ -2,10 +2,7 @@
 
 Developing a flow stress, strain rate and slip rate calculator and simulator for shear zones. 
 
-Functions include calculators for strain rate that incorporate the temperature - pressure dependence of water fugacity at lithostatic pore fluid pressures for as many as nine seperate flow laws and four seperate paleopiezometers. The slip rate calculator takes variables of shear zone width and strain rate. 
-
-PS.js courtesy of Tony Withers (http://publish.uwo.ca/~awither5/fugacity/index.htm) and is the basis for the fugacity depency in this code. 
-
+Functions include calculators for strain rate that incorporate the temperature - pressure dependence of water fugacity at lithostatic pore fluid pressures for as many as nine seperate flow laws and four seperate paleopiezometers. The slip rate calculator takes variables of shear zone width and strain rate. PS.js courtesy of Tony Withers (http://publish.uwo.ca/~awither5/fugacity/index.htm) and is the basis for the fugacity depency in this code. 
 
 Code also includes basic plotting functions:
 
@@ -16,6 +13,10 @@ Plot of strain and slip rates for a range of temperatures at 400 MPa using the H
 Code currently includes four seperate paleopiezometers, default is Stipp and Tullis (2003) with the Holyoke and Kronenberg (2010) correction.
 
 ![screen shot 2017-06-26 at 9 20 35 am](https://user-images.githubusercontent.com/18178879/27549580-3e47df88-5a51-11e7-89a7-a1103a3b4af3.png)
+
+
+Fugacity as a function of pressure and temperature:
+![screen shot 2017-06-29 at 4 39 05 pm](https://user-images.githubusercontent.com/18178879/27715075-91d30b42-5ce9-11e7-8271-14b1b44c3963.png)
 
 
 ### Examples
