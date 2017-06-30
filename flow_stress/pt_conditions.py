@@ -10,8 +10,13 @@ class PTCalculator():
 
     def pt_calculator(self): #depth in km, density in g/cm3
 
-        pressure = [(self.density*self.gravity*d*1000)/1.0E6 for d in self.depth] #pressure in MPa
-        temp = [self.geothermal_gradient*d for d in self.depth]
+        if type(self.depth) == int:
+            self.depth = [self.depth]
+            pressure = [(self.density*self.gravity*d*1000)/1.0E6 for d in self.depth] #pressure in MPa
+            temp = [self.geothermal_gradient*d for d in self.depth]
+        else: 
+            pressure = [(self.density*self.gravity*d*1000)/1.0E6 for d in self.depth] #pressure in MPa
+            temp = [self.geothermal_gradient*d for d in self.depth]
         
         return pressure, temp
 
