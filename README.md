@@ -20,6 +20,7 @@ Fugacity as a function of pressure and temperature:
 
 
 ### Examples
+#### Plotting strain and slip rate as a function of temperature and grain size
 ```
 #User inputs 
 temperature = range(300, 600) #C
@@ -37,6 +38,16 @@ f.calculate_strain_rate() #Default flow law is Hirth et al. (2001)
 f.calculate_slip_rate(width) #add with width of a shear zone
 
 plot_strain_slip_rates(f.temperature, strain_rate, slip_rate)
+
 ```
+
+#### Plotting fugacity as a function of pressure and temperature
+```
+#User inputs
+t = np.arange(300, 600, 50)
+p = np.arange(200, 700, 50)
+
+fg = FugacityGrid(t, p)
+fg.fugacity_grid_plot()
 
 
