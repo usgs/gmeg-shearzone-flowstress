@@ -43,7 +43,7 @@ plot_strain_slip_rates(f.temperature, strain_rate, slip_rate)
 
 #### Plotting fugacity as a function of pressure and temperature
 ```
-#User inputs
+#User inputs must be numpy arrays for fugacity grid plotter
 t = np.arange(300, 600, 50)
 p = np.arange(200, 700, 50)
 
