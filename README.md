@@ -16,7 +16,7 @@ Code currently includes four seperate paleopiezometers, default is Stipp and Tul
 
 
 Fugacity as a function of pressure and temperature:
-![screen shot 2017-06-29 at 4 39 05 pm](https://user-images.githubusercontent.com/18178879/27715075-91d30b42-5ce9-11e7-8271-14b1b44c3963.png)
+![screen shot 2017-06-29 at 6 09 17 pm](https://user-images.githubusercontent.com/18178879/27716861-1e7478ea-5cf6-11e7-9ab5-bdaef92f89bf.png)
 
 
 ### Examples
