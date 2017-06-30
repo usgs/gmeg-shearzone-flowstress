@@ -6,12 +6,6 @@ from fugacity_calculator import *
 from flow_stress import *
 
 
-#t = np.array([723.15, 773.15, 823.15, 873.15])#450, 500, 550 C
-# t = np.arange(600, 800, 5)
-# tC = K2C(t)
-# #p = np.array([400000000, 450000000, 500000000, 550000000])
-# p = np.arange(200000000, 700000000, 5000000)
-# T, P = np.meshgrid(t,p)
 
 class FugacityGrid(FlowStressCalculator):
 

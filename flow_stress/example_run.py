@@ -34,7 +34,7 @@ sl = f.calculate_slip_rate(width)
 
 f.plot_strain_slip_rates()
 
-t2 = np.array(t)
+t2 = np.array(t)#Pressure and temperature must be in numpy arrays for grid plots
 p2 = np.array(p)
 fg = FugacityGrid(t2,p2)
 fg.fugacity_grid_plot()
