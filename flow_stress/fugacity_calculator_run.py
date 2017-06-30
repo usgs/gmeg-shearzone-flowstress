@@ -1,5 +1,5 @@
 #Run fugacity calculator class
-from flow_stress.fugacity_calculator import *
+from fugacity_calculator import *
 
 t = 723
 p = 400000000

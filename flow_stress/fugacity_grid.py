@@ -48,9 +48,9 @@ class FugacityGrid():
         fo_v = np.vectorize(self.fugacity_grid_optimizer)
         result_array = fo_v(self.T, self.P)
 
-        extent = [self.tC.min(), self.tC.max(), self.pM.max(), self.pM.min()]
+        self.extent = [self.tC.min(), self.tC.max(), self.pM.max(), self.pM.min()]
         
-        im = plt.imshow(result_array, cmap=plt.cm.jet, aspect="auto",extent=extent)#interpolation="none",
+        im = plt.imshow(result_array, cmap=plt.cm.jet, aspect="auto",extent=self.extent)#interpolation="none",
         plt.xlabel('Temperature (C)')
         plt.ylabel('Pressure (MPa)')
         plt.colorbar(im, label='Fugacity (MPa)')

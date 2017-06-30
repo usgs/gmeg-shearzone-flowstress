@@ -1,9 +1,12 @@
 
-from flow_stress.flow_stress import *#FlowStressCalculator, plot_strain_slip_rates
+from flow_stress import *#FlowStressCalculator, plot_strain_slip_rates
+from fugacity_grid import *
 
 
-temp = range(300, 600)
-pressure = [400]
+
+temp = np.arange(300, 600)
+
+pressure = np.arange(400, 500)
 grain_size = range(3, 35, 3)#range(5,10)#[10,12,13,16,27,29]##[5,6,7,8,9,10,11,12,13,14,15,30] #List of grainsizes 
 width = [30]
 
@@ -22,4 +25,7 @@ slip_rate = f.calculate_slip_rate(width)
 temperature_C = K2C(f.temperature)
 
 
-plot_strain_slip_rates(f.temperature, strain_rate, slip_rate, grain_size)
+#plot_strain_slip_rates(f.temperature, strain_rate, slip_rate, grain_size)
+fg = FugacityGrid(temp, pressure)
+fg.fugacity_grid_plot()
+
