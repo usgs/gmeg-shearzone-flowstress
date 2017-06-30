@@ -2,10 +2,7 @@
 
 Developing a flow stress, strain rate and slip rate calculator and simulator for shear zones. 
 
-Functions include calculators for strain rate that incorporate the temperature - pressure dependence of water fugacity at lithostatic pore fluid pressures for as many as nine seperate flow laws and four seperate paleopiezometers. The slip rate calculator takes variables of shear zone width and strain rate. 
-
-PS.js courtesy of Tony Withers (http://publish.uwo.ca/~awither5/fugacity/index.htm) and is the basis for the fugacity depency in this code. 
-
+Functions include calculators for strain rate that incorporate the temperature - pressure dependence of water fugacity at lithostatic pore fluid pressures for as many as nine seperate flow laws and four seperate paleopiezometers. The slip rate calculator takes variables of shear zone width and strain rate. PS.js courtesy of Tony Withers (http://publish.uwo.ca/~awither5/fugacity/index.htm) and is the basis for the fugacity depency in this code. 
 
 Code also includes basic plotting functions:
 
@@ -18,7 +15,12 @@ Code currently includes four seperate paleopiezometers, default is Stipp and Tul
 ![screen shot 2017-06-26 at 9 20 35 am](https://user-images.githubusercontent.com/18178879/27549580-3e47df88-5a51-11e7-89a7-a1103a3b4af3.png)
 
 
+Fugacity as a function of pressure and temperature:
+![screen shot 2017-06-29 at 6 09 17 pm](https://user-images.githubusercontent.com/18178879/27716861-1e7478ea-5cf6-11e7-9ab5-bdaef92f89bf.png)
+
+
 ### Examples
+#### Plotting strain and slip rate as a function of temperature and grain size
 ```
 #User inputs 
 temperature = range(300, 600) #C
@@ -36,6 +38,16 @@ f.calculate_strain_rate() #Default flow law is Hirth et al. (2001)
 f.calculate_slip_rate(width) #add with width of a shear zone
 
 plot_strain_slip_rates(f.temperature, strain_rate, slip_rate)
+
 ```
+
+#### Plotting fugacity as a function of pressure and temperature
+```
+#User inputs
+t = np.arange(300, 600, 50)
+p = np.arange(200, 700, 50)
+
+fg = FugacityGrid(t, p)
+fg.fugacity_grid_plot()
 
 
