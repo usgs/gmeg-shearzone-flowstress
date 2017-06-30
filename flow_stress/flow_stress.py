@@ -18,7 +18,8 @@ class FlowStressCalculator():
         self.fugacity = []
         self.differential_stress = []
         self.strain_rate = []
-        self.slip_rate= []  
+        self.slip_rate= []
+
 
         
     def calculate_fugacity(self):
@@ -53,6 +54,7 @@ class FlowStressCalculator():
 
     def calculate_slip_rate(self, width): #width in m, output of mm/yr
        
+        width = [width]
         for w in width: 
             for strain in self.strain_rate:
                 vel = w*1000*31536000*strain
@@ -63,43 +65,44 @@ class FlowStressCalculator():
 
 
 
-def plot_strain_slip_rates(temperature, strain_rate, slip_rate, grain_size):
-    
-    temperature_C = K2C(temperature)
-    #Group the data for plotting
-    sr_grouped = [strain_rate[x:x+len(temperature)] for x in xrange(0, len(strain_rate), len(temperature))]
-    sl_grouped = [slip_rate[x:x+len(temperature)] for x in xrange(0, len(slip_rate), len(temperature))]
-    
-    
-    fig = plt.figure()
-    sub1 = fig.add_subplot(2,1,1)
-    sub1.set_yscale('log')
-    sub1.text(0.01, 0.85, '[A] Strain Rates', transform=sub1.transAxes, fontsize=10)
-    sub1.set_ylabel('Strain Rate (1/s)')
-    sub1.legend(loc='upper left')
+    def plot_strain_slip_rates(self):
+        
+        temperature_C = K2C(self.temperature)
 
-    
-    sub2 = fig.add_subplot(2,1,2, sharex=sub1)
-    sub2.set_yscale('log')
-    sub2.text(0.01, 0.85, '[B] Slip Rates', transform=sub2.transAxes, fontsize=10)
-    sub2.set_xlabel('Temperature ( C)')
-    sub2.set_ylabel("Velocity (mm/yr)")
-    
+        #Group the data for plotting
+        sr_grouped = [self.strain_rate[x:x+len(self.temperature)] for x in xrange(0, len(self.strain_rate), len(self.temperature))]
+        sl_grouped = [self.slip_rate[x:x+len(self.temperature)] for x in xrange(0, len(self.slip_rate), len(self.temperature))]
+        
+        
+        fig = plt.figure()
+        sub1 = fig.add_subplot(2,1,1)
+        sub1.set_yscale('log')
+        sub1.text(0.01, 0.85, '[A] Strain Rates', transform=sub1.transAxes, fontsize=10)
+        sub1.set_ylabel('Strain Rate (1/s)')
+        sub1.legend(loc='upper left')
 
-    plt.setp(sub1.get_xticklabels(), visible=False)
-    plt.subplots_adjust(hspace = 0.2)
+        
+        sub2 = fig.add_subplot(2,1,2, sharex=sub1)
+        sub2.set_yscale('log')
+        sub2.text(0.01, 0.85, '[B] Slip Rates', transform=sub2.transAxes, fontsize=10)
+        sub2.set_xlabel('Temperature ( C)')
+        sub2.set_ylabel("Velocity (mm/yr)")
+        
 
-    colors=iter(cm.jet(np.linspace(0,1,len(grain_size))))
-    colors2=iter(cm.jet(np.linspace(0,1,len(grain_size))))
-    for i, grain in enumerate(grain_size):
-        sub1.plot(temperature_C, sr_grouped[i], color=next(colors), label=(str(grain) + ' um'))
-        sub1.legend(loc='center left', bbox_to_anchor=(1, 0), title="Grain Size", fontsize = 'x-small')
-        sub2.plot(temperature_C, sl_grouped[i], color=next(colors2))
+        plt.setp(sub1.get_xticklabels(), visible=False)
+        plt.subplots_adjust(hspace = 0.2)
 
-    
-    
-    
-    plt.show()
+        colors=iter(cm.jet(np.linspace(0,1,len(self.grain_size))))
+        colors2=iter(cm.jet(np.linspace(0,1,len(self.grain_size))))
+        for i, grain in enumerate(self.grain_size):
+            sub1.plot(temperature_C, sr_grouped[i], color=next(colors), label=(str(grain) + ' um'))
+            sub1.legend(loc='center left', bbox_to_anchor=(1, 0), title="Grain Size", fontsize = 'x-small')
+            sub2.plot(temperature_C, sl_grouped[i], color=next(colors2))
+
+        
+        
+        
+        plt.show()
 
 
 

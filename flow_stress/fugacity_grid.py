@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.constants.constants import C2K, K2C
 from scipy import optimize as opt # for optimization
 from fugacity_calculator import *
+from flow_stress import *
 
 
 #t = np.array([723.15, 773.15, 823.15, 873.15])#450, 500, 550 C
@@ -12,13 +13,11 @@ from fugacity_calculator import *
 # p = np.arange(200000000, 700000000, 5000000)
 # T, P = np.meshgrid(t,p)
 
-class FugacityGrid():
+class FugacityGrid(FlowStressCalculator):
 
     def __init__(self, temperature, pressure):
-        self.tC = temperature
-        self.pM = pressure
-        self.temperature = C2K(np.array(temperature))
-        self.pressure = np.array(pressure)*1.0E6
+        
+        FlowStressCalculator.__init__(self, temperature, pressure)
         self.T, self.P = np.meshgrid(temperature, pressure)
 
 
@@ -43,7 +42,8 @@ class FugacityGrid():
 
     def fugacity_grid_plot(self):
 
-        #T, P = np.meshgrid(self.temperature, self.pressure)
+        self.tC = K2C(self.temperature)
+        self.pM = np.array(self.pressure)/1.0E6
 
         fo_v = np.vectorize(self.fugacity_grid_optimizer)
         result_array = fo_v(self.T, self.P)
