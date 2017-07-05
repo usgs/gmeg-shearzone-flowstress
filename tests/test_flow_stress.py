@@ -1,7 +1,18 @@
+
+import unittest
+import nose
+
+
+from flow_stress import flow_stress
 # import numpy as np
 # from scipy.constants.constants import C2K
-from fugacity import *
-import unittest 
+#from flow_stress.flow_stress import FlowStressCalculator
+#from flow_stress import flow_stress
+#from flow_stress.flow_stress import FlowStressCalculator
+#from flow_stress import fugacity_calculator 
+#from flow_stress.flow_stress import *
+
+
 import pdb
 
 temperature = [450, 403]
@@ -49,5 +60,6 @@ def test_if_plot_function_works(temperature, strain_rate, slip_rate):
 		# pdb.set_trace()
 
 		
-
+if __name__ == '__main__':
+    unittest.main()
 		
