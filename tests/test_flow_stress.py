@@ -1,9 +1,15 @@
 
 import unittest
-import nose
+import sys
+
+# sys.path.append('/Users/bmelosh/projects/flowstress/tests/')
+# sys.path.append('/Users/bmelosh/projects/flowstress/flow_stress/')
+# print(sys.path)
+
+#from tests import *
 
 
-from flow_stress import flow_stress
+from flow_stress import FlowStressCalculator
 # import numpy as np
 # from scipy.constants.constants import C2K
 #from flow_stress.flow_stress import FlowStressCalculator
@@ -52,14 +58,14 @@ class Test_flow_stress_calculator(unittest.TestCase):
 		self.assertEqual(self.sr[0], [2.2933821401993624e-10])
 		self.assertEqual(self.slip[0], [216.97229751998128])
 	
-def test_if_plot_function_works(temperature, strain_rate, slip_rate):
+# def test_if_plot_function_works(temperature, strain_rate, slip_rate):
 	
-	plot_flow_stress(temperature, strain_rate, slip_rate)
+# 	plot_flow_stress(temperature, strain_rate, slip_rate)
 
 
 		# pdb.set_trace()
 
 		
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
 		
