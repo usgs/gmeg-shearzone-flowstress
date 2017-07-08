@@ -9,7 +9,7 @@ import sys
 #from tests import *
 
 
-from flow_stress import FlowStressCalculator
+from flow_stress.flow_stress import *
 # import numpy as np
 # from scipy.constants.constants import C2K
 #from flow_stress.flow_stress import FlowStressCalculator
