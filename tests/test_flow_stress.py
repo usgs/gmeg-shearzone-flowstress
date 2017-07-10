@@ -9,14 +9,8 @@ import sys
 #from tests import *
 
 
-from flow_stress import FlowStressCalculator
-# import numpy as np
-# from scipy.constants.constants import C2K
-#from flow_stress.flow_stress import FlowStressCalculator
-#from flow_stress import flow_stress
-#from flow_stress.flow_stress import FlowStressCalculator
-#from flow_stress import fugacity_calculator 
-#from flow_stress.flow_stress import *
+from flow_stress.flow_stress_calculator import FlowStressCalculator
+from flow_stress.fugacity_calculator import *
 
 
 import pdb
@@ -24,7 +18,7 @@ import pdb
 temperature = [450, 403]
 pressure = [400]
 grain_size =[3, 35]
-width = [30]
+width = 30
 strain_rate = [2.2933821401993624e-10,3.6252500509443698e-11,9.4046743178047913e-14,1.4866382471598576e-14]
 slip_rate =[216.97229751998128,34.297765681974496,0.088975742785887574,0.014064787128729982]
 
@@ -52,7 +46,6 @@ class Test_flow_stress_calculator(unittest.TestCase):
 		self.sr = self.fs_calculation.calculate_strain_rate()
 		self.slip = self.fs_calculation.calculate_slip_rate(width)
 		
-
 		self.assertEqual(self.fs_calculation.fugacity,[116.71651725233453, 87.86334635835435])
 		self.assertEqual(self.fs_calculation.differential_stress, [204.77990936946233, 29.14098182806724])
 		self.assertEqual(self.sr[0], [2.2933821401993624e-10])
