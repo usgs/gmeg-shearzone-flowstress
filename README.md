@@ -49,5 +49,9 @@ p = np.arange(200, 700, 50)
 
 fg = FugacityGrid(t, p)
 fg.fugacity_grid_plot()
+```
 
+## Run Testsuite
+```pip install nosetests```
 
+```nosetests```
