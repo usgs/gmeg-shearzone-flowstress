@@ -15,7 +15,7 @@ class FlowStressCalculator():
 
     def __init__(self, temperature_values, pressure_values):
         self.temperature = C2K(np.array(temperature_values))
-        self.pressure = np.array(pressure_values)*1.0E6
+        self.pressure = np.array([pressure_values])*1.0E6
         self.grain_size = []
         self.fugacity = []
         self.differential_stress = []
@@ -52,7 +52,7 @@ class FlowStressCalculator():
         return self.strain_rate
 
     def calculate_slip_rate(self, width):  # width in m, output of mm/yr
-
+        
         width = [width]
         for w in width:
             for strain in self.strain_rate:

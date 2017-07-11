@@ -42,23 +42,23 @@ CS = np.zeros([10])
 # 1.45E4 -1.47 Twiss 1977 #Get more from literature
 # 339 -0.58 Koch 1983 # from Gleason and Tullis, 1993 (GRL)
 PIEZOMETERS = {
-    'ST03': {'Constant_B': 3631, 'Exponent': -1.26},
-    'HK10': {'Constant_B': 2451, 'Exponent': -1.26},
-    'K83': {'Constant_B': 339, 'Exponent': -0.58},
-    'T77': {'Constant_B': 1.45E4, 'Exponent': -1.47}
+    'ST03': {'Constant_B': 3631, 'Exponent': -1.26, "Name": "Stipp and Tullis (2003)"},
+    'HK10': {'Constant_B': 2451, 'Exponent': -1.26, "Name": "Holyoke and Kronenberg (2010)"},
+    'K83': {'Constant_B': 339, 'Exponent': -0.58, "Name": "Koch (1983)"},
+    'T77': {'Constant_B': 1.45E4, 'Exponent': -1.47, "Name": "Twiss (1977)"}
 }
 
 
 FLOW_LAWS = {
-    "KT84": {"A": 2.2E-6, "n": 2.7, "Q": 1.2E5},
-    'GT95wm': {"A": 1.8E-8, "n": 4, "Q": 1.37E5},
-    'J84': {"A": 2.88E-3, "n": 1.8, "Q": 1.51E5},
-    'K89': {"A": 1.1E-6, "n": 2.7, "Q": 1.34E5},
-    'HC82': {"A": 1.99E-2, "n": 1.8, "Q": 1.67E5},
-    'LP92g': {"A": 6.6E-8, "n": 3.1, "Q": 1.35E5},
-    'LP92a': {"A": 3.98E-10, "n": 4, "Q": 1.35E5},
-    "H01":  {"A": 6.3E-12, "n": 4, "Q": 1.35E5},
-    "RB04": {"A": 1.2E-5, "n": 2.97, "Q": 2.42E5}
+    "KT84": {"A": 2.2E-6, "n": 2.7, "Q": 1.2E5, "Name": "Kronenberg and Tullis (1984)"},
+    'GT95wm': {"A": 1.8E-8, "n": 4, "Q": 1.37E5, "Name": "Gleason and Tullis (1995) with melt"},
+    'J84': {"A": 2.88E-3, "n": 1.8, "Q": 1.51E5, "Name": "Jaoul et al. (1984)"},
+    'K89': {"A": 1.16E-7, "n": 2.72, "Q": 1.34E5, "Name": "Koch et al. (1989)"},
+    'HC82': {"A": 1.99E-2, "n": 1.8, "Q": 1.67E5, "Name": "Hansen and Carter (1982)"},
+    'LP92g': {"A": 6.6E-8, "n": 3.1, "Q": 1.35E5, "Name": "Luan and Paterson (1992) with gel"},
+    'LP92a': {"A": 3.98E-10, "n": 4, "Q": 1.35E5, "Name": "Luan and Paterson (1992) with acid"},
+    "H01":  {"A": 6.3E-12, "n": 4, "Q": 1.35E5, "Name": "Hirth et al. (2001)"},
+    "RB04": {"A": 1.2E-5, "n": 2.97, "Q": 2.42E5, "Name": "Rutter and Brodie (2004)"}
 }
 
 

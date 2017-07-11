@@ -20,35 +20,52 @@ Fugacity as a function of pressure and temperature:
 
 
 ### Examples
-#### Plotting strain and slip rate as a function of temperature and grain size
+## Import and define pressure, temperature conditions
 ```
-#User inputs 
-temperature = range(300, 600) #C
-pressure = [400] #MPa
-grain_size = range(5,25) #microns
-width = [30] #m
+from flow_stress.flow_stress_calculator import FlowStressCalculator
+from flow_stress.pt_conditions import *
+from flow_stress.fugacity_grid import *
 
-
-f = FlowStressCalculator(temperature, pressure) #Currently works for a range of temperature at a single pressure value.
-
-#Cacluates the temperature-pressure dependence of water fugacity over this temperature range.
-f.calculate_fugacity() 
-f.calculate_differential_stress(grain_size) #default is Holyoke and Kronenberg (2010)
-f.calculate_strain_rate() #Default flow law is Hirth et al. (2001)
-f.calculate_slip_rate(width) #add with width of a shear zone
-
-plot_strain_slip_rates(f.temperature, strain_rate, slip_rate)
-
+# Decide what pressure temperature ranges you want to use, 
+# takes depth in km, density in g/cm3 and geothermal gradient in C/km. 
+# Outputs are: pressure, temperature
+print(PTCalculator(10, 2.7, 30).pt_calculator()) 
+print(PTCalculator(18, 2.7, 30).pt_calculator())
 ```
 
-#### Plotting fugacity as a function of pressure and temperature
-```
-#User inputs must be numpy arrays for fugacity grid plotter
-t = np.arange(300, 600, 50)
-p = np.arange(200, 700, 50)
+## Plot the fugacity grid
 
-fg = FugacityGrid(t, p)
-fg.fugacity_grid_plot()
+```
+# Use these ranges to define your pressure temperature ranges
+pressure = range(260,480,10)
+temperature = range(300,540,10)
+
+FugacityGrid(temperature,pressure).fugacity_grid_plot() #Creates fugacity plot
+```
+
+## Calculate flow stress and plot
+
+```
+# Define grain size (microns) and shear zone width (meters) and a single pressure to calculate strain and slip rates
+grain_size = range(5,26,2)
+width = 20 #Width in meters
+pressure = 400 # Plot only works at a single pressure over a range of temperatures
+
+f = FlowStressCalculator(temperature, pressure)
+fugacity = f.calculate_fugacity()
+differential_stress = f.calculate_differential_stress(grain_size)  # Default is Holyoke and Kronenberg (2010)
+strain_rate = f.calculate_strain_rate() # Default flow law is Hirth et al. (2001)
+slip_rate = f.calculate_slip_rate(width) 
+f.plot_strain_slip_rates()
+```
+
+## To explore options
+
+```
+#To see all piezometers and flow laws
+from flow_stress.fugacity_calculator import *
+print(FLOW_LAWS)
+print(PIEZOMETERS)
 ```
 
 ## Run Testsuite

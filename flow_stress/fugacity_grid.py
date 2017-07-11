@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.constants.constants import C2K, K2C
 from scipy import optimize as opt # for optimization
 from fugacity_calculator import *
-from flow_stress import *
+from flow_stress_calculator import *
 
 
 
