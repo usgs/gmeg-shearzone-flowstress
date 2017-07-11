@@ -5,7 +5,7 @@ from flow_stress.flow_stress_calculator import FlowStressCalculator
 from flow_stress.fugacity_calculator import *
 
 temperature = [450, 403]
-pressure = [400]
+pressure = [400, 401]
 grain_size = [3, 35]
 width = 30
 strain_rate = [2.2933821401993624e-10, 3.6252500509443698e-11,
