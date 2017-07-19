@@ -14,6 +14,7 @@ from fugacity_calculator import *
 class FlowStressCalculator():
 
     def __init__(self, temperature_values, pressure_values):
+
         self.temperature = C2K(np.array(temperature_values))
         self.pressure = np.array([pressure_values])*1.0E6
         self.grain_size = []
