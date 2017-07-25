@@ -98,8 +98,10 @@ class FlowStressCalculator():
             sub1.legend(loc='center left', bbox_to_anchor=(1, 0),
                         title="Grain Size", fontsize='x-small')
             sub2.plot(temperature_C, sl_grouped[i], color=next(colors2))
-
+    
         plt.show()
+        return fig
+
 
 
 # def chunker(temperature, data):
@@ -108,7 +110,7 @@ class FlowStressCalculator():
 #     return chunk
 
 # Export PDF file
-def export_pdf(fig, title='title'):
-    pdf = PdfPages(title+'.pdf')
-    pdf.savefig(fig)  # , bbox_inches='tight')
-    pdf.close()
+# def export_pdf(fig, title='title'):
+#     pdf = PdfPages(title+'.pdf')
+#     pdf.savefig(fig)  # , bbox_inches='tight')
+#     pdf.close()
