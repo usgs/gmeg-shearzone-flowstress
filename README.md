@@ -50,7 +50,7 @@ FugacityGrid(temperature,pressure).fugacity_grid_plot() #Creates fugacity plot
 # Define grain size (microns) and shear zone width (meters) and a single pressure to calculate strain and slip rates
 grain_size = range(5,26,2)
 width = 20 #Width in meters
-pressure = 400 # Plot only works at a single pressure over a range of temperatures
+pressure = [400] # Plot only works at a single pressure over a range of temperatures
 
 f = FlowStressCalculator(temperature, pressure)
 fugacity = f.calculate_fugacity()
