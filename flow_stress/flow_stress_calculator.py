@@ -8,8 +8,8 @@ from fugacity_calculator import *
 
 # CALCULATE FLOW STRESS
 # Takes imputs of pressure and temperature converts them from MPa and C to
-# Pa and K
-
+# Pa and K, calculates fugacity, differential stress, flow stress and slip rate
+# and plots the results. 
 
 class FlowStressCalculator():
 

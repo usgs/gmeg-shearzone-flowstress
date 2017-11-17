@@ -6,7 +6,7 @@ from fugacity_grid import *
 
 #User inputs
 #Depth in km
-depth = range(10,21,1)
+depth = 10 #range(10,21,1)
 #Density in gm/cc
 density = 2.7
 #Geothermal gradient in C/km
