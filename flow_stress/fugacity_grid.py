@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 #Functions to plot a grid of fugacity values for a range of temperatures and pressures.
 
+=======
+>>>>>>> 038a828dd5c08780cd28d66d9a81eac7a2bfe30d
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.constants.constants import C2K, K2C

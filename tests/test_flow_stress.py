@@ -2,10 +2,17 @@ import unittest
 import sys
 
 from flow_stress.flow_stress_calculator import FlowStressCalculator
+<<<<<<< HEAD
 #from flow_stress.fugacity_calculator import *
 
 temperature = [450, 403]
 pressure = [400]
+=======
+from flow_stress.fugacity_calculator import *
+
+temperature = [450, 403]
+pressure = [400, 401]
+>>>>>>> 038a828dd5c08780cd28d66d9a81eac7a2bfe30d
 grain_size = [3, 35]
 width = 30
 strain_rate = [2.2933821401993624e-10, 3.6252500509443698e-11,
@@ -50,4 +57,8 @@ class Test_flow_stress_calculator(unittest.TestCase):
 
 
 # if __name__ == '__main__':
+<<<<<<< HEAD
 #      unittest.main()
+=======
+#     unittest.main()
+>>>>>>> 038a828dd5c08780cd28d66d9a81eac7a2bfe30d
