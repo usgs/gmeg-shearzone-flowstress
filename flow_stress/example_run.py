@@ -1,16 +1,14 @@
 from pt_conditions import *
 from fugacity_calculator import *
-from flow_stress import *
+from flow_stress_calculator import *
 from fugacity_grid import *
 
 
 #User inputs
 #Depth in km
-<<<<<<< HEAD
+
 depth = 10 #range(10,21,1)
-=======
-depth = range(10,21,1)
->>>>>>> 038a828dd5c08780cd28d66d9a81eac7a2bfe30d
+
 #Density in gm/cc
 density = 2.7
 #Geothermal gradient in C/km
@@ -30,7 +28,7 @@ print p
 print t
 
 f = FlowStressCalculator(t, p)
-f.calculate_fugacity()
+f.calculate_fugacity() #only works for a single pressure value
 f.calculate_differential_stress(grain_size) #As currently written grain sizes must be in a python list
 sr= f.calculate_strain_rate()
 
@@ -39,6 +37,6 @@ sl = f.calculate_slip_rate(width)
 f.plot_strain_slip_rates()
 
 t2 = np.array(t)#Pressure and temperature must be in numpy arrays for grid plots
-p2 = np.array(p)
+p2 = np.array(p)#only works over a range of pressures
 fg = FugacityGrid(t2,p2)
 fg.fugacity_grid_plot()
