@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.constants.constants import C2K, K2C
+from scipy.constants import convert_temperature
 import math
 from scipy import optimize as opt  # for optimization
 import matplotlib.pyplot as plt
@@ -16,7 +16,8 @@ class FlowStressCalculator():
 
     def __init__(self, temperature_values, pressure_values):
 
-        self.temperature = C2K(np.array(temperature_values))
+        self.temperature = convert_temperature(temperature_values, 'c','k')#C2K(np.array(temperature_values))
+
         self.pressure = np.array([pressure_values])*1.0E6
         self.grain_size = []
         self.fugacity = []

@@ -20,7 +20,11 @@ class PTCalculator():
         
         return pressure, temp
 
+    def pt_calculator_pressure_value(self, pressure, single_depth):
 
+        pressure_dict = dict(zip(self.depth, pressure))
+
+        return pressure_dict[single_depth]
 
     
     # def depth_simulator(self): #depth range in km
