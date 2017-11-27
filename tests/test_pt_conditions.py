@@ -25,9 +25,12 @@ class Test_pt_conditions(unittest.TestCase):
 		self.assertEqual(self.t[0], 300)
 
 	def test_if_pt_calculator_pressure_value_works(self):
+		self.single_depth = 10
 		self.pt = PTCalculator(depth, density, geothermal_gradient)
 		self.p, self.t = self.pt.pt_calculator()
-		self.single_p = pt.pt_calculator_pressure_value(self, pressure, single_depth)
+		self.single_p = self.pt.pt_calculator_pressure_value(self.p, self.single_depth)
+
+		self.assertEqual(self.single_p, 264.6000000000001)
 
 		#if single_pressure_value == False:
 	#		print('You will have multiple pressure values')

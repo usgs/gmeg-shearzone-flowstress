@@ -8,7 +8,9 @@ import pdb
 #User inputs
 #Depth in km
 
-depth = range(10,21,1) #10
+
+depth = range(10,24,1)
+single_depth = 21 #Single depth for ploting flow stress values over range of temperature
 
 #Density in gm/cc
 density = 2.7
@@ -24,12 +26,19 @@ width = 20
 
 pt = PTCalculator(depth, density, geothermal_gradient)
 
-p,t  = pt.pt_calculator()
+p_range,t  = pt.pt_calculator()
 
-print(p)
-print(t)
 
-p = pt.pt_calculator_pressure_value(p,10) #Reassign pressure value to a single depth, rather than a range. (here we use 10km)
+t2 = np.array(t)#Pressure and temperature must be in numpy arrays for grid plots
+p2 = np.array(p_range)#only works over a range of pressures
+
+fg = FugacityGrid(t2,p2)
+fg.fugacity_grid_plot()
+
+
+
+p = pt.pt_calculator_pressure_value(p_range, single_depth) 
+
 
 f = FlowStressCalculator(t, p)
 f.calculate_fugacity() #only works for a single pressure value
@@ -40,13 +49,9 @@ sl = f.calculate_slip_rate(width)
 
 f.plot_strain_slip_rates()
 
-t2 = np.array(t)#Pressure and temperature must be in numpy arrays for grid plots
-p2 = np.array(p)#only works over a range of pressures
 
-pdb.set_trace()
 
-fg = FugacityGrid(t2,p2)
-fg.fugacity_grid_plot()
+#pdb.set_trace()
 
 
 

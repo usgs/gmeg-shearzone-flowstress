@@ -66,13 +66,13 @@ class FlowStressCalculator():
 
     def plot_strain_slip_rates(self):
 
-        temperature_C = K2C(self.temperature)
+        temperature_C = convert_temperature(self.temperature,'k','c')
 
         # Group the data for plotting
         sr_grouped = [self.strain_rate[
-            x:x+len(self.temperature)] for x in xrange(0, len(self.strain_rate), len(self.temperature))]
+            x:x+len(self.temperature)] for x in range(0, len(self.strain_rate), len(self.temperature))] #xrange
         sl_grouped = [self.slip_rate[
-            x:x+len(self.temperature)] for x in xrange(0, len(self.slip_rate), len(self.temperature))]
+            x:x+len(self.temperature)] for x in range(0, len(self.slip_rate), len(self.temperature))] #xrange
 
         fig = plt.figure()
         sub1 = fig.add_subplot(2, 1, 1)
