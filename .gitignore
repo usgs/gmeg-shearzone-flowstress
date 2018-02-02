@@ -2,7 +2,7 @@
 *.ipynb
 .DS_Store
 .pdf
-#*.pdf
+*.pdf
 *.pyc
 ignore/
 figs/

@@ -24,6 +24,7 @@ class FlowStressCalculator():
         self.differential_stress = []
         self.strain_rate = []
         self.slip_rate = []
+        self.width = []
 
     def calculate_fugacity(self):
 
@@ -35,7 +36,7 @@ class FlowStressCalculator():
                 self.fugacity.append(fug)
         return self.fugacity
 
-    def calculate_differential_stress(self, grain_size, paleopiezometer='HK10'):
+    def calculate_differential_stress(self, grain_size, paleopiezometer='ST03'):
 
         self.grain_size = grain_size
         for grain in self.grain_size:
@@ -56,6 +57,7 @@ class FlowStressCalculator():
 
     def calculate_slip_rate(self, width):  # width in m, output of mm/yr
         
+        self.width = width
         width = [width]
         for w in width:
             for strain in self.strain_rate:
@@ -86,7 +88,8 @@ class FlowStressCalculator():
         sub2.set_yscale('log')
         sub2.text(0.01, 0.85, '[B] Slip Rates',
                   transform=sub2.transAxes, fontsize=10)
-        sub2.set_xlabel('Temperature ( C)')
+        sub2.text(0.75, 0.15, 'Width: %s m' % self.width, transform=sub2.transAxes, fontsize=10)
+        sub2.set_xlabel('Temperature ($\degree$C)')
         sub2.set_ylabel("Velocity (mm/yr)")
 
         plt.setp(sub1.get_xticklabels(), visible=False)
@@ -96,10 +99,13 @@ class FlowStressCalculator():
         colors2 = iter(cm.jet(np.linspace(0, 1, len(self.grain_size))))
         for i, grain in enumerate(self.grain_size):
             sub1.plot(temperature_C, sr_grouped[i], color=next(
-                colors), label=(str(grain) + ' um'))
+                colors), label=(str(grain) + ' $\mu$m'))
             sub1.legend(loc='center left', bbox_to_anchor=(1, 0),
                         title="Grain Size", fontsize='x-small')
             sub2.plot(temperature_C, sl_grouped[i], color=next(colors2))
+
+        sub1.set_xlim(left=min(temperature_C), right=max(temperature_C))
+        sub2.set_xlim(left=min(temperature_C), right=max(temperature_C))
     
         plt.show()
         return fig

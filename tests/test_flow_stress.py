@@ -43,9 +43,18 @@ class Test_flow_stress_calculator(unittest.TestCase):
         self.assertEqual(self.sr[0], [2.2933821401993624e-10])
         self.assertEqual(self.slip[0], [216.97229751998128])
 
-# def test_if_plot_function_works(temperature, strain_rate, slip_rate):
+    def test_if_plot_function_works(temperature, strain_rate, slip_rate):
+        self.fs_calculation = FlowStressCalculator(temperature, pressure)
 
-# 	plot_flow_stress(temperature, strain_rate, slip_rate)
+        self.fs_calculation.calculate_fugacity()
+        self.fs_calculation.calculate_differential_stress(grain_size)
+        self.sr = self.fs_calculation.calculate_strain_rate()
+        self.slip = self.fs_calculation.calculate_slip_rate(width)
+
+
+        self.fig = self.fs_calculation.plot_strain_slip_rates()
+
+        self.assertEqual()
 
         # pdb.set_trace()
 
