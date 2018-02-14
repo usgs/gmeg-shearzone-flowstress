@@ -1,5 +1,8 @@
 # Flowstress Calculator
 
+[![DOI](https://zenodo.org/badge/67163252.svg)](https://zenodo.org/badge/latestdoi/67163252)
+
+
 Developing a flow stress, strain rate and slip rate calculator and simulator for shear zones. 
 
 Functions include calculators for strain rate that incorporate the temperature - pressure dependence of water fugacity at lithostatic pore fluid pressures for as many as nine seperate flow laws and four seperate paleopiezometers. The slip rate calculator takes variables of shear zone width and strain rate. PS.js courtesy of Tony Withers (http://publish.uwo.ca/~awither5/fugacity/index.htm) and is the basis for the fugacity depency in this code. 
