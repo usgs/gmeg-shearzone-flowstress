@@ -4,7 +4,7 @@ This software is preliminary or provisional and is subject to revision. It is be
 
 MIT License
 
-Copyright (c) [2017] [Ben Melosh]
+Copyright (c) [2018] [Ben Melosh]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
