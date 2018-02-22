@@ -13,7 +13,7 @@ Plot of strain and slip rates for a range of temperatures at 400 MPa using the H
 
 ![screen shot 2017-06-26 at 9 34 12 am](https://user-images.githubusercontent.com/18178879/27549955-b550f94c-5a52-11e7-900c-9b20ff36f156.png)
 
-Code currently includes four seperate paleopiezometers, default is Stipp and Tullis (2003).
+Code currently includes four separate paleopiezometers, default is Stipp and Tullis (2003).
 
 ![screen shot 2017-06-26 at 9 20 35 am](https://user-images.githubusercontent.com/18178879/27549580-3e47df88-5a51-11e7-89a7-a1103a3b4af3.png)
 
