@@ -19,7 +19,7 @@
     "homepageURL": "https://usgs.github.io/gmeg-shearzone-flowstress/",
     "downloadURL": "https://github.com/usgs/gmeg-shearzone-flowstress/archive/master.zip",
     "disclaimerURL": "https://github.com/usgs/gmeg-shearzone-flowstress/blob/master/LICENSE.md",
-    "repositoryUrl": "https://github.com/usgs/gmeg-shearzone-flowstress.git",
+    "repositoryURL": "https://github.com/usgs/gmeg-shearzone-flowstress.git",
     "vcs": "git",
 
     "laborHours": null,
